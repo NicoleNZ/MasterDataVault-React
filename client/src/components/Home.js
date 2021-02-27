@@ -63,7 +63,6 @@ const Home = () => {
         });   
     };
 
-
     //next we are getting the latest data from MongoDB and updating the product list that is rendered on the UI
     useEffect(() => {
     fetch("mongodb://localhost:27017/masterDataVault-React", { //this is going to GET the list of products from the MongoDB database, including the new one just added
@@ -82,9 +81,19 @@ const Home = () => {
     });
     }, []);  
     
+    const handleProductClick = (productIndex) => {
+        const product = productList[productIndex];
+        setMovieEdit(product);
+        setMovieDelete(product);
+    }
+
+
+
+
+
     return (
         <div>
-        <ProductList products={productList} />
+        <ProductList products={productList} handleClick={handleProductClick} />
         <CreateProduct submit={handleCreateProductSubmit}/>
         <EditProduct />
         <DeleteProduct />

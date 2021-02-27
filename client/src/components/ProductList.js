@@ -4,7 +4,7 @@ const ProductList = (props) => {
     return (
         <ul>
             {props.products.map((el, index) => ( //this props.product is related to the products={productList} in the render of Home component
-                <li key={index}>
+                <li key={index} onClick={() => props.handleClick(index)}>
                     Product Code: {el.productCode}
                     Product Name: {el.productName}
                     Net Weight: {el.netWeight}
