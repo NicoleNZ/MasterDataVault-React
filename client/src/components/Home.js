@@ -105,18 +105,38 @@ const Home = () => {
             body: JSON.stringify(product)
         })
         .then((response) => {
-            console.log('PUT response:', response);
+            console.log('Patch response:', response);
         })        
     };
 
-
+    const handleDeleteProductButtonClick = (product) => {
+        console.log("handleDeleteProductButtonClick: ", handleDeleteProductButtonClick);
+        const foundProduct = productList.findIndex((productEl) => {
+            console.log("productEl: ", productEl);
+            console.log("productEl._id: ", productEl._id)
+            return productEl._id
+        });
+        console.log("foundProduct: ", foundProduct);
+        const newProducts = [...productList];
+        newProducts[foundProduct] = product;
+        setProductList(newProducts);
+        fetch(`http://localhost:4000/api/vault/delete-product/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((response) => {
+            console.log('Delete response:', response);
+        })        
+    };
 
     return (
         <div>
         <ProductList products={productList} handleClick={handleProductClick} />
         <CreateProduct submit={handleCreateProductSubmit}/>
         <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
-        {/* <DeleteProduct /> */}
+        <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
         </div>
     );
 

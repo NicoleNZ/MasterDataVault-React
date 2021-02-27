@@ -29,7 +29,7 @@ const EditProduct = (props) => {
     
     return (
         <div>
-            <h1>Edit Movie</h1>
+            <h1>Edit Product</h1>
             <form onSubmit={handleEditSubmit}>
                 <label>
                     Product Code
