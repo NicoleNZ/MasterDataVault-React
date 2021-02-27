@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { CreateProduct } from "./CreateProduct";
-// import { EditProduct } from "./EditProduct";
-// import { DeleteProduct } from "./DeleteProduct";
+import { EditProduct } from "./EditProduct";
+import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
 
 const Home = () => {
     
-    const [productList, setProductList] = useState([{
+    const [productList, setProductList] = useState([]); //this will be used to render a list of products on the UI when someone is logged in
+    const [productEdit, setProductEdit] = useState ({
         productCode: "",
         productName: "",
         netWeight: "",
@@ -14,25 +15,16 @@ const Home = () => {
         listPrice: "",
         unitBarcode: "",
         caseBarcode: "",
-    }]); //this will be used to render a list of products on the UI when someone is logged in
-    // const [productEdit, setProductEdit] = useState ({
-    //     productCode: "",
-    //     productName: "",
-    //     netWeight: "",
-    //     unitsPerCase: "",
-    //     listPrice: "",
-    //     unitBarcode: "",
-    //     caseBarcode: "",
-    // }); // this will be used to edit products
-    // const [productDelete, setProductDelete] = useState ({
-    //     productCode: "",
-    //     productName: "",
-    //     netWeight: "",
-    //     unitsPerCase: "",
-    //     listPrice: "",
-    //     unitBarcode: "",
-    //     caseBarcode: "",
-    // }); //this will be used to delete products
+    }); // this will be used to edit products
+    const [productDelete, setProductDelete] = useState ({
+        productCode: "",
+        productName: "",
+        netWeight: "",
+        unitsPerCase: "",
+        listPrice: "",
+        unitBarcode: "",
+        caseBarcode: "",
+    }); //this will be used to delete products
 
     const handleCreateProductSubmit = (
         productCode,
@@ -51,7 +43,8 @@ const Home = () => {
                 unitBarcode: unitBarcode,
                 caseBarcode: caseBarcode
             };
-        const newProducts = [productList];
+            console.log(typeof productList);
+        const newProducts = [...productList];
         newProducts.push(newProduct); //this is pushing the newly created product into the array of product objects
         setProductList(newProducts); //this 'updates' the productList in the memory to contain the newly created product
         
@@ -81,27 +74,33 @@ const Home = () => {
     })
     .then((productData) => {
         console.log("Current productData is: ", productData);
-        setProductList(productData.data); //is this incase data is added to the databse from elsewhere?  Otherwise, how is this not a repeat of setProductList(newProducts);
+        setProductList(productData); //is this incase data is added to the databse from elsewhere?  Otherwise, how is this not a repeat of setProductList(newProducts);
+
     });
     }, []);  
     
-    // const handleProductClick = (productIndex) => {
-    //     const product = productList[productIndex];
-    //     setMovieEdit(product);
-    //     setMovieDelete(product);
-    // }
+    const handleProductClick = (productIndex) => {
+        const product = productList[productIndex];
+        setProductEdit(product);
+    }
 
+const handleEditProductClick = (product) => {
+    console.log("handleEditProductClick: ", handleEditProductClick);
+    const foundProduct = productList.findIndex((productEl) => {
+        console.log("productEl: ", productEl);
+        return productEl._id === product._id
+    });
 
+};
 
 
 
     return (
         <div>
-        <ProductList products={productList} /> 
-        {/* handleClick={handleProductClick} /> */}
+        <ProductList products={productList} handleClick={handleProductClick} />
         <CreateProduct submit={handleCreateProductSubmit}/>
-        {/* <EditProduct />
-        <DeleteProduct /> */}
+        {/* <EditProduct /> */}
+        {/* <DeleteProduct /> */}
         </div>
     );
 
