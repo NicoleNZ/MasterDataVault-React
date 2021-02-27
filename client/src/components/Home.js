@@ -84,6 +84,7 @@ const Home = () => {
         const product = productList[productIndex];
         console.log("product: ", product);
         setProductEdit(product);
+        setProductDelete(product);
     }
 
     const handleEditProductButtonClick = (product) => {

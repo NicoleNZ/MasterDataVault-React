@@ -10,7 +10,6 @@ const EditProduct = (props) => {
         unitBarcode: "",
         caseBarcode: ""
     });
-    console.log("formState: ", formState);
 
     useEffect(() => {
         setFormState(props.product);

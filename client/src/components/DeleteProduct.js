@@ -10,19 +10,13 @@ const DeleteProduct = (props) => {
         unitBarcode: "",
         caseBarcode: ""
     });
-    console.log("formState: ", formState);
 
     useEffect(() => {
         setFormState(props.product);
         }, [props.product]); //need this to be able to render products into the edit field when clicked on the UI
 
-    const handleFieldChange = (e) => {
-        const newState = { ...formState }; //newState will therefore equal whatever is written in the fields
-        newState[e.target.name] = e.target.value; 
-        setFormState(newState); //updates the formState in the memory
-    };
-    
     const handleDeleteSubmit = (e) => {
+        e.preventDefault();
         props.submit(formState);
     };
     
@@ -32,33 +26,33 @@ const DeleteProduct = (props) => {
             <form onSubmit={handleDeleteSubmit}>
                 <label>
                     Product Code
-                    <input name="productCode" value={formState.productCode} onChange={handleFieldChange}></input>
+                    <input name="productCode" defaultValue={formState.productCode} ></input>
                 </label>
                 <label>
                     Product Name
-                    <input name="productName" value={formState.productName} onChange={handleFieldChange}></input>
+                    <input name="productName" defaultValue={formState.productName} ></input>
                 </label>
                 <label>
                     Net Weight
-                    <input name="netWeight" value={formState.netWeight} onChange={handleFieldChange}></input>
+                    <input name="netWeight" defaultValue={formState.netWeight} ></input>
                 </label>
                 <label>
                     Units Per Case
-                    <input name="unitsPerCase" value={formState.unitsPerCase} onChange={handleFieldChange}></input>
+                    <input name="unitsPerCase" defaultValue={formState.unitsPerCase} ></input>
                 </label>
                 <label>
                     List Price
-                    <input name="listPrice" value={formState.listPrice} onChange={handleFieldChange}></input>
+                    <input name="listPrice" defaultValue={formState.listPrice} ></input>
                 </label>
                 <label>
                     Unit Barcode
-                    <input name="unitBarcode" value={formState.unitBarcode} onChange={handleFieldChange}></input>
+                    <input name="unitBarcode" defaultValue={formState.unitBarcode} ></input>
                 </label>
                                 <label>
                     Case Barcode
-                    <input name="caseBarcode" value={formState.caseBarcode} onChange={handleFieldChange}></input>
+                    <input name="caseBarcode" defaultValue={formState.caseBarcode} ></input>
                 </label>
-                <button type="submit">Edit Product</button>
+                <button type="submit">Delete Product</button>
             </form>
         </div>
     )
