@@ -80,8 +80,9 @@ const Home = () => {
     }, []);  
     
     const handleProductClick = (productIndex) => {
+        console.log("productIndex: ", productIndex);        
         const product = productList[productIndex];
-        console.log("productIndex: ", productIndex);
+        console.log("product: ", product);
         setProductEdit(product);
     }
 
@@ -89,9 +90,23 @@ const Home = () => {
         console.log("handleEditProductButtonClick: ", handleEditProductButtonClick);
         const foundProduct = productList.findIndex((productEl) => {
             console.log("productEl: ", productEl);
-            return productEl._id === product._id
+            console.log("productEl._id: ", productEl._id)
+            return productEl._id
         });
-        
+        console.log("foundProduct: ", foundProduct);
+        const newProducts = [...productList];
+        newProducts[foundProduct] = product;
+        setProductList(newProducts);
+        fetch(`http://localhost:4000/api/vault/update-product/${product._id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product)
+        })
+        .then((response) => {
+            console.log('PUT response:', response);
+        })        
     };
 
 
@@ -100,7 +115,7 @@ const Home = () => {
         <div>
         <ProductList products={productList} handleClick={handleProductClick} />
         <CreateProduct submit={handleCreateProductSubmit}/>
-        {/* <EditProduct /> */}
+        <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
         {/* <DeleteProduct /> */}
         </div>
     );
