@@ -81,17 +81,18 @@ const Home = () => {
     
     const handleProductClick = (productIndex) => {
         const product = productList[productIndex];
+        console.log("productIndex: ", productIndex);
         setProductEdit(product);
     }
 
-const handleEditProductClick = (product) => {
-    console.log("handleEditProductClick: ", handleEditProductClick);
-    const foundProduct = productList.findIndex((productEl) => {
-        console.log("productEl: ", productEl);
-        return productEl._id === product._id
-    });
-
-};
+    const handleEditProductButtonClick = (product) => {
+        console.log("handleEditProductButtonClick: ", handleEditProductButtonClick);
+        const foundProduct = productList.findIndex((productEl) => {
+            console.log("productEl: ", productEl);
+            return productEl._id === product._id
+        });
+        
+    };
 
 
 
