@@ -12,9 +12,9 @@ const EditProduct = (props) => {
     });
     console.log("formState: ", formState);
 
-    // useEffect(() => {
-    //     setFormState(props.product);
-    //     }, [props.product]);
+    useEffect(() => {
+        setFormState(props.product);
+        }, [props.product]); //need this to be able to render products into the edit field when clicked on the UI
 
     const handleFieldChange = (e) => {
         const newState = { ...formState }; //newState will therefore equal whatever is written in the fields
