@@ -1,5 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { About } from "./About";
+import { Contact } from "./Contact";
+import { Pricing } from "./Pricing";
+import { SignUp } from "./SignUp";
+import { Login } from "./Login";
 
 const Nav = () => {
     return (
@@ -26,7 +31,7 @@ const Nav = () => {
                     <Route path="/about">
                         <About />
                     </Route>
-                    {/* <Route path="/pricing">
+                    <Route path="/pricing">
                         <Pricing />
                     </Route>
                     <Route path="/contact">
@@ -37,7 +42,7 @@ const Nav = () => {
                     </Route>
                     <Route path="/login">
                         <Login />
-                    </Route> */}
+                    </Route>
                 </Switch>
             </nav>
             </Router>

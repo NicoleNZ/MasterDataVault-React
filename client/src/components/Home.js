@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { CreateProduct } from "./CreateProduct";
 import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
+import { Nav } from "./NavBar"
 
 const Home = () => {
     
@@ -133,12 +135,52 @@ const Home = () => {
     };
 
     return (
-        <div>
-        <ProductList products={productList} handleClick={handleProductClick} />
-        <CreateProduct submit={handleCreateProductSubmit}/>
-        <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
-        <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
-        </div>
+        <Router>
+            <nav>
+            <Nav />
+            </nav>
+            <div>
+                <div>
+                    <ul>
+                        <li>
+                            <Link to="productList">Product List</Link>
+                        </li>
+                    </ul>
+                </div>   
+                <div>
+                    <ul>
+                        <li>
+                            <Link to="createProduct">Create Product</Link>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <Link to="editProduct">Edit Product</Link>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <Link to="deleteProduct">Delete Product</Link>
+                        </li>
+                    </ul>
+                </div>
+
+                <Switch>
+                    <Route path="/productList">
+                        <ProductList products={productList} handleClick={handleProductClick} />
+                    </Route>
+                    <Route path="/createProduct">
+                        <CreateProduct submit={handleCreateProductSubmit}/>
+                    </Route>
+                    <Route path="/editProduct">
+                        <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
+                    </Route>
+                    <Route path="/deleteProduct">
+                        <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     );
 
 };
