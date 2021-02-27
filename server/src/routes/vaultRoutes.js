@@ -60,4 +60,25 @@ router.get("/findbyid/:id", (request, response) => {
     });
 });
 
+router.get('/', async (request, response) => {
+       try  {
+  
+        const allMovies = await Movie.find();
+  
+        // This is the response to react
+        res.json({
+          status: {
+              code: 200,
+              message: "Success"
+            },
+          data: allMovies
+        });
+  
+      } catch (err){
+  
+        res.send(err)
+  
+      }
+  });
+
 module.exports = router;

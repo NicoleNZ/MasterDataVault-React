@@ -12,7 +12,6 @@ const ProductList = (props) => {
                     List Price: {el.listPrice}
                     Unit Barcode: {el.unitBarcode}
                     Case Barcode: {el.caseBarcode}
-                    Active Product: {el.activeProduct}
                 </li>
             ))}
         </ul>

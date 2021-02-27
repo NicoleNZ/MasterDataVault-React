@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { CreateProduct } from "./CreateProduct";
-import { EditProduct } from "./EditProduct";
-import { DeleteProduct } from "./DeleteProduct";
+// import { EditProduct } from "./EditProduct";
+// import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
 
 const Home = () => {
     
-    const [productList, setProductList] = useState([]); //this will be used to render a list of products on the UI when someone is logged in
-    const [productEdit, setProductEdit] = useState ({
+    const [productList, setProductList] = useState([{
         productCode: "",
         productName: "",
         netWeight: "",
@@ -15,18 +14,25 @@ const Home = () => {
         listPrice: "",
         unitBarcode: "",
         caseBarcode: "",
-        activeProduct: ""
-    }); // this will be used to edit products
-    const [productDelete, setProductDelete] = useState ({
-        productCode: "",
-        productName: "",
-        netWeight: "",
-        unitsPerCase: "",
-        listPrice: "",
-        unitBarcode: "",
-        caseBarcode: "",
-        activeProduct: ""
-    }); //this will be used to delete products
+    }]); //this will be used to render a list of products on the UI when someone is logged in
+    // const [productEdit, setProductEdit] = useState ({
+    //     productCode: "",
+    //     productName: "",
+    //     netWeight: "",
+    //     unitsPerCase: "",
+    //     listPrice: "",
+    //     unitBarcode: "",
+    //     caseBarcode: "",
+    // }); // this will be used to edit products
+    // const [productDelete, setProductDelete] = useState ({
+    //     productCode: "",
+    //     productName: "",
+    //     netWeight: "",
+    //     unitsPerCase: "",
+    //     listPrice: "",
+    //     unitBarcode: "",
+    //     caseBarcode: "",
+    // }); //this will be used to delete products
 
     const handleCreateProductSubmit = (
         productCode,
@@ -35,8 +41,7 @@ const Home = () => {
         unitsPerCase,
         listPrice,
         unitBarcode,
-        caseBarcode,
-        activeProduct) => {
+        caseBarcode) => {
             const newProduct = { 
                 productCode: productCode,
                 productName: productName,
@@ -44,14 +49,13 @@ const Home = () => {
                 unitsPerCase: unitsPerCase,
                 listPrice: listPrice,
                 unitBarcode: unitBarcode,
-                caseBarcode: caseBarcode,
-                activeProduct: activeProduct
+                caseBarcode: caseBarcode
             };
-        const newProducts = [...productList];
+        const newProducts = [productList];
         newProducts.push(newProduct); //this is pushing the newly created product into the array of product objects
         setProductList(newProducts); //this 'updates' the productList in the memory to contain the newly created product
         
-        fetch("mongodb://localhost:27017/masterDataVault-React", { //this is going to POST the newly created product to the MongoDB database
+        fetch("http://localhost:4000/api/vault/new-product", { //this is going to POST the newly created product to the MongoDB database
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +69,7 @@ const Home = () => {
 
     //next we are getting the latest data from MongoDB and updating the product list that is rendered on the UI
     useEffect(() => {
-    fetch("mongodb://localhost:27017/masterDataVault-React", { //this is going to GET the list of products from the MongoDB database, including the new one just added
+    fetch("http://localhost:4000/api/vault/welcome", { //this is going to GET the list of products from the MongoDB database, including the new one just added
     method: "GET",
     headers: {
         "Content-Type": "application/json",
@@ -81,11 +85,11 @@ const Home = () => {
     });
     }, []);  
     
-    const handleProductClick = (productIndex) => {
-        const product = productList[productIndex];
-        setMovieEdit(product);
-        setMovieDelete(product);
-    }
+    // const handleProductClick = (productIndex) => {
+    //     const product = productList[productIndex];
+    //     setMovieEdit(product);
+    //     setMovieDelete(product);
+    // }
 
 
 
@@ -93,10 +97,11 @@ const Home = () => {
 
     return (
         <div>
-        <ProductList products={productList} handleClick={handleProductClick} />
+        <ProductList products={productList} /> 
+        {/* handleClick={handleProductClick} /> */}
         <CreateProduct submit={handleCreateProductSubmit}/>
-        <EditProduct />
-        <DeleteProduct />
+        {/* <EditProduct />
+        <DeleteProduct /> */}
         </div>
     );
 

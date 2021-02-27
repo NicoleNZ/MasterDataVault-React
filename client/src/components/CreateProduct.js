@@ -8,8 +8,7 @@ const CreateProduct = (props) => {
         unitsPerCase: "",
         listPrice: "",
         unitBarcode: "",
-        caseBarcode: "",
-        activeProduct: ""
+        caseBarcode: ""
     });
 
     const handleFieldChange = (e) => {
@@ -27,8 +26,7 @@ const CreateProduct = (props) => {
             formState.unitsPerCase,
             formState.listPrice,
             formState.unitBarcode,
-            formState.caseBarcode,
-            formState.activeProduct
+            formState.caseBarcode
         );
     };
 
@@ -63,10 +61,6 @@ const CreateProduct = (props) => {
                                 <label>
                     Case Barcode
                     <input name="caseBarcode" value={formState.caseBarcode} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    Active Product
-                    <input name="activeProduct" value={formState.activeProduct} onChange={handleFieldChange}></input>
                 </label>
                 <button type="submit">Create Product</button>
             </form>
