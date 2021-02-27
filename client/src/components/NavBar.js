@@ -22,11 +22,11 @@ const Nav = () => {
                         <Link to="login">Login</Link>
                     </li>
                 </ul>
-                {/* <Switch>
+                <Switch>
                     <Route path="/about">
                         <About />
                     </Route>
-                    <Route path="/pricing">
+                    {/* <Route path="/pricing">
                         <Pricing />
                     </Route>
                     <Route path="/contact">
@@ -37,8 +37,8 @@ const Nav = () => {
                     </Route>
                     <Route path="/login">
                         <Login />
-                    </Route>
-                </Switch> */}
+                    </Route> */}
+                </Switch>
             </nav>
             </Router>
     );
