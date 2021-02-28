@@ -1,16 +1,22 @@
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
 
-const Nav = () => {
+const BootstrapTesting = () => {
     return (
         <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <Tagline />
-                    </Col>
-                    <Col>2 of 2</Col>
-                </Row>
-            </Container>
+                        <Card style={{ color: "#000" }} class="feature" />
+                        <Card.Img src=""/>
+                        <Card.Body>
+                            <Card.Title>
+                                Feature/Benefit
+                            </Card.Title>
+                            <Card.Text>
+                                This is a Feature or benefit of LockBox
+                            </Card.Text>
+                            <Button style={{ background: "#ff007f" }}>Learn More</Button>
+                        </Card.Body>
         </div>
     );
 };
+
+export { BootstrapTesting };

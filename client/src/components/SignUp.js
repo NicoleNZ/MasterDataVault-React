@@ -1,10 +1,13 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap"
 
 const SignUp = () => {
     return (
-        <div>
-            <h1>This is the SignUp section</h1>
-        </div>
+        <Container>
+        <Row>
+            <h1>This is the Sign Up section</h1>
+        </Row>
+        </Container>
     )
 }
 

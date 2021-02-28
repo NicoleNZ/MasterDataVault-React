@@ -1,10 +1,13 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap"
 
 const About = () => {
     return (
-        <div>
+        <Container>
+        <Row>
             <h1>This is the About section</h1>
-        </div>
+        </Row>
+        </Container>
     )
 }
 

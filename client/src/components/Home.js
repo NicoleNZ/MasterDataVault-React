@@ -5,6 +5,7 @@ import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
 import { Nav } from "./NavBar"
+import { BootstrapTesting } from "./new"
 
 const Home = () => {
     
@@ -179,6 +180,9 @@ const Home = () => {
                         <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
                     </Route>
                 </Switch>
+            </div>
+            <div>
+                <BootstrapTesting />
             </div>
         </Router>
     );
