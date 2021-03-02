@@ -5,30 +5,33 @@ import { Contact } from "./Contact";
 import { Pricing } from "./Pricing";
 import { SignUp } from "./SignUp";
 import { Login } from "./Login";
+import  Nav  from "react-bootstrap/Nav";
+import Navbar from 'react-bootstrap/Navbar';
 
-
-const Nav = () => {
+const Navigation = () => {
     return (
         <Router>
-            <div class="navbar">
-                <a>
-                    <img src="" />
-                </a>
-                <a>
-                    <Link to="about">About</Link>
-                </a>
-                <a>
-                    <Link to="pricing">Pricing</Link>
-                </a>
-                <a>
-                    <Link to="contact">Contact</Link>
-                </a>
-                <a>
-                    <Link to="signup">Sign Up</Link>
-                </a>
-                <a>
-                    <Link to="login">Login</Link>
-                </a>
+            <Navbar bg="primary" variant="dark" expand="lg">
+            <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
+            <Nav>
+                <Nav.Item>
+                    <Link className="nav-link" to="/about">About</Link>    
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" to="/pricing">Pricing</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/contact">Contact</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/signup">Sign Up</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/login">Login</Link>    
+                </Nav.Item>  
+            </Nav>
+            </Navbar>
+
             <Switch>
                 <Route path="/about">
                     <About />
@@ -46,9 +49,8 @@ const Nav = () => {
                     <Login />
                 </Route>
             </Switch>
-            </div>
         </Router>
     );
 };
 
-export { Nav };
+export { Navigation };
