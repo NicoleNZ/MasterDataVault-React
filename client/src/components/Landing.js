@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { LandingNavigation } from "./NavBar";
+import { Companies, Tagline } from "./Tagline";
 
 const LandingPage = () => {
     return (
         <div>
             <LandingNavigation />
+            <Tagline />
             <Container>
                 <Row>
                     <Col>
@@ -52,6 +53,7 @@ const LandingPage = () => {
                     </Col>
                 </Row>
             </Container>
+            <Companies />
         </div>
     );
 };

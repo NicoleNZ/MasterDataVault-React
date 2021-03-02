@@ -57,45 +57,4 @@ const LandingNavigation = () => {
     );
 };
 
-const SignedInNavigation = () => {
-    return (
-        <Router>
-            <Navbar bg="primary" variant="dark" expand="lg">
-            <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
-            <Nav className="w-100 nav-justified">
-                <Nav.Item>
-                    <Link className="nav-link" to="/create">Create Product</Link>    
-                </Nav.Item>
-                <Nav.Item>
-                    <Link className="nav-link" to="/edit">Edit Product</Link>    
-                </Nav.Item> 
-                <Nav.Item>
-                    <Link className="nav-link" to="/delete">Delete Product</Link>    
-                </Nav.Item> 
-                <Nav.Item>
-                    <Link className="nav-link" to="/logout">Logout</Link>    
-                </Nav.Item>  
-            </Nav>
-            </Navbar>
-
-            <Switch>
-                <Route path="/create">
-                    <CreateProduct />
-                </Route>
-                <Route path="/edit">
-                    <EditProduct />
-                </Route>
-                <Route path="/delete">
-                    <DeleteProduct />
-                </Route>
-
-                <Route path="/logout">
-                    <Logout />
-                </Route>
-            </Switch>
-        </Router>
-    );
-};
-
 export { LandingNavigation };
-export { SignedInNavigation };

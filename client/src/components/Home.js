@@ -4,8 +4,11 @@ import { CreateProduct } from "./CreateProduct";
 import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
+import { Logout } from "./Login"
 import { SignedInNavigation } from "./NavBar";
 import { LandingPage } from "./Landing";
+import  Nav  from "react-bootstrap/Nav";
+import Navbar from 'react-bootstrap/Navbar';
 
 const Home = () => {
     
@@ -137,6 +140,54 @@ const Home = () => {
 
     return (
         <Router>
+            <Navbar bg="primary" variant="dark" expand="lg">
+            <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
+            <Nav className="w-100 nav-justified">
+                <Nav.Item>
+                    <Link className="nav-link" to="/create">Create Product</Link>    
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" to="/edit">Edit Product</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/delete">Delete Product</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/logout">Logout</Link>    
+                </Nav.Item>  
+            </Nav>
+            </Navbar>
+
+            <div>
+                <ul>
+                    <li>
+                        <Link to="productList">Product List</Link>
+                    </li>
+                </ul>
+            </div>   
+
+            <Switch>
+                <Route path="/create">
+                    <CreateProduct submit={handleCreateProductSubmit}/>
+                </Route>
+                <Route path="/edit">
+                    <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
+                </Route>
+                <Route path="/delete">
+                    <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
+                </Route>
+                <Route path="/logout">
+                    <Logout />
+                </Route>
+                <Route path="/productList">
+                        <ProductList products={productList} handleClick={handleProductClick} />
+                </Route>
+            </Switch>
+
+            <LandingPage />
+    </Router>
+    
+        /* <Router>
             <nav>
             <SignedInNavigation />
             </nav>
@@ -184,7 +235,7 @@ const Home = () => {
             <div>
                 <LandingPage />
             </div>
-        </Router>
+        </Router> */
     );
 
 };
