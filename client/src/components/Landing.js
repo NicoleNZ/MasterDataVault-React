@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
-import { Navigation } from "./NavBar";
+import { LandingNavigation } from "./NavBar";
 
 const LandingPage = () => {
     return (
         <div>
-            <Navigation />
+            <LandingNavigation />
             <Container>
                 <Row>
                     <Col>

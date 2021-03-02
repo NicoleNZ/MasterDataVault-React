@@ -5,15 +5,19 @@ import { Contact } from "./Contact";
 import { Pricing } from "./Pricing";
 import { SignUp } from "./SignUp";
 import { Login } from "./Login";
+import { Logout } from "./Login";
 import  Nav  from "react-bootstrap/Nav";
 import Navbar from 'react-bootstrap/Navbar';
+import { DeleteProduct } from "./DeleteProduct";
+import { EditProduct } from "./EditProduct";
+import { CreateProduct } from "./CreateProduct";
 
-const Navigation = () => {
+const LandingNavigation = () => {
     return (
         <Router>
             <Navbar bg="primary" variant="dark" expand="lg">
             <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
-            <Nav>
+            <Nav className="w-100 nav-justified">
                 <Nav.Item>
                     <Link className="nav-link" to="/about">About</Link>    
                 </Nav.Item>
@@ -53,4 +57,45 @@ const Navigation = () => {
     );
 };
 
-export { Navigation };
+const SignedInNavigation = () => {
+    return (
+        <Router>
+            <Navbar bg="primary" variant="dark" expand="lg">
+            <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
+            <Nav className="w-100 nav-justified">
+                <Nav.Item>
+                    <Link className="nav-link" to="/create">Create Product</Link>    
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" to="/edit">Edit Product</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/delete">Delete Product</Link>    
+                </Nav.Item> 
+                <Nav.Item>
+                    <Link className="nav-link" to="/logout">Logout</Link>    
+                </Nav.Item>  
+            </Nav>
+            </Navbar>
+
+            <Switch>
+                <Route path="/create">
+                    <CreateProduct />
+                </Route>
+                <Route path="/edit">
+                    <EditProduct />
+                </Route>
+                <Route path="/delete">
+                    <DeleteProduct />
+                </Route>
+
+                <Route path="/logout">
+                    <Logout />
+                </Route>
+            </Switch>
+        </Router>
+    );
+};
+
+export { LandingNavigation };
+export { SignedInNavigation };

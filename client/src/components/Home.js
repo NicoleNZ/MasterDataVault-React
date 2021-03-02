@@ -4,7 +4,7 @@ import { CreateProduct } from "./CreateProduct";
 import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
-import { Navigation } from "./NavBar";
+import { SignedInNavigation } from "./NavBar";
 import { LandingPage } from "./Landing";
 
 const Home = () => {
@@ -138,7 +138,7 @@ const Home = () => {
     return (
         <Router>
             <nav>
-            <Navigation />
+            <SignedInNavigation />
             </nav>
             <div>
                 <div>

@@ -11,4 +11,15 @@ const Login = () => {
     )
 }
 
+const Logout = () => {
+    return (
+        <Container>
+        <Row>
+            <h1>This is the Logout section</h1>
+        </Row>
+        </Container>
+    )
+}
+
 export { Login };
+export { Logout };
