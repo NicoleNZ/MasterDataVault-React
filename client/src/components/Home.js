@@ -4,8 +4,8 @@ import { CreateProduct } from "./CreateProduct";
 import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
-import { Nav } from "./NavBar"
-import { BootstrapTesting } from "./new"
+import { Nav } from "./NavBar";
+import { LandingPage } from "./Landing";
 
 const Home = () => {
     
@@ -182,7 +182,7 @@ const Home = () => {
                 </Switch>
             </div>
             <div>
-                <BootstrapTesting />
+                <LandingPage />
             </div>
         </Router>
     );
