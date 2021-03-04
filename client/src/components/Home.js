@@ -5,13 +5,13 @@ import { EditProduct } from "./EditProduct";
 import { DeleteProduct } from "./DeleteProduct";
 import { ProductList } from "./ProductList";
 import { Logout } from "./Login"
-import { SignedInNavigation } from "./NavBar";
 import { LandingPage } from "./Landing";
 import  Nav  from "react-bootstrap/Nav";
 import Navbar from 'react-bootstrap/Navbar';
 
 const Home = () => {
     
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [productList, setProductList] = useState([]); //this will be used to render a list of products on the UI when someone is logged in
     const [productEdit, setProductEdit] = useState ({
         productCode: "",
@@ -140,6 +140,7 @@ const Home = () => {
 
     return (
         <Router>
+            {isLoggedIn && <div>
             <Navbar bg="primary" variant="dark" expand="lg">
             <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
             <Nav className="w-100 nav-justified">
@@ -157,14 +158,16 @@ const Home = () => {
                 </Nav.Item>  
             </Nav>
             </Navbar>
-
+            
             <div>
                 <ul>
                     <li>
                         <Link to="productList">Product List</Link>
                     </li>
                 </ul>
-            </div>   
+            </div>
+            </div>  
+            } 
 
             <Switch>
                 <Route path="/create">
@@ -184,7 +187,7 @@ const Home = () => {
                 </Route>
             </Switch>
 
-            <LandingPage />
+            {!isLoggedIn && <LandingPage setIsLoggedIn={setIsLoggedIn}/>}
     </Router>
     
         /* <Router>

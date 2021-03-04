@@ -2,10 +2,10 @@ import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { LandingNavigation } from "./NavBar";
 import { Companies, Tagline } from "./Tagline";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
     return (
         <div>
-            <LandingNavigation />
+            <LandingNavigation setIsLoggedIn={props.setIsLoggedIn} />
             <Tagline />
             <Container>
                 <Row>

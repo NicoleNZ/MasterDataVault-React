@@ -1,28 +1,50 @@
 import React, { useState } from "react";
-import { Container, Row, Button } from "react-bootstrap"
-import { Login } from "./Login";
+import { Container, Row, Col, Card, Button } from "react-bootstrap"
+
 
 const SignUp = (props) => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [formState, setFormState] = useState({
+        username: "",
+        password: ""
+    });
 
-    const handleLoginSubmit = (e) => {
-        e.preventDefault();
-        Login({
-            username: username,
-            password: password
-        })
-        .then
+
+    const handleFieldChange = (e) => {
+        console.log('formState', formState);
+        const newState = { ...formState }
+        newState[e.target.name] = e.target.value;
+        setFormState(newState);
+        console.log('newState', newState);
     }
+
+    const handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        console.log(formState);
+    
+        fetch("http://localhost:4000/api/user/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formState),
+            })
+            .then((response) => {
+            console.log("POST response:", response);
+            });
 
     };
 
     return (
         <Container>
         <Row>
-        <div>
-            <h1>Sign Up</h1>
+        <Col></Col>
+        <Col>  
+        <Card className="text-center" style={{ color: "#000" }} >
+            <Card.Body>
+            <Card.Title>
+                Sign Up
+            </Card.Title>
             <form onSubmit={handleRegisterSubmit}>
                 <label>
                     Enter Username
@@ -30,11 +52,15 @@ const SignUp = (props) => {
                 </label>
                 <label>
                     Enter Password
-                    <input name="password" value={formState.password} onChange={handleFieldChange}></input>
+                    <input type="password" name="password" value={formState.password} onChange={handleFieldChange}></input>
                 </label>
-                <button type="submit" style={{ background: "#ff007f" }}>Register</button>
+                <br></br>
+                <Button type="submit" style={{ background: "#ff007f" }}>Sign Up</Button>
             </form>
-        </div>
+
+            </Card.Body>
+        </Card>
+        </Col>
         </Row>
         </Container>
     )

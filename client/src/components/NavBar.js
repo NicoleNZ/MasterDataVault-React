@@ -5,14 +5,11 @@ import { Contact } from "./Contact";
 import { Pricing } from "./Pricing";
 import { SignUp } from "./SignUp";
 import { Login } from "./Login";
-import { Logout } from "./Login";
 import  Nav  from "react-bootstrap/Nav";
 import Navbar from 'react-bootstrap/Navbar';
-import { DeleteProduct } from "./DeleteProduct";
-import { EditProduct } from "./EditProduct";
-import { CreateProduct } from "./CreateProduct";
 
-const LandingNavigation = () => {
+
+const LandingNavigation = (props) => {
     return (
         <Router>
             <Navbar bg="primary" variant="dark" expand="lg">
@@ -50,7 +47,7 @@ const LandingNavigation = () => {
                     <SignUp />
                 </Route>
                 <Route path="/login">
-                    <Login />
+                    <Login setIsLoggedIn={props.setIsLoggedIn} />
                 </Route>
             </Switch>
         </Router>

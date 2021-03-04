@@ -32,6 +32,7 @@ const Companies = () => {
                         <Image className="m-4" width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUdukgTSK7fGVFhCT3BSVLbukqlea-1L39Zg&usqp=CAU"/>
                         <Image className="m-4" width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUdukgTSK7fGVFhCT3BSVLbukqlea-1L39Zg&usqp=CAU"/>
                         <Image className="m-4" width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUdukgTSK7fGVFhCT3BSVLbukqlea-1L39Zg&usqp=CAU"/>
+                        <br></br>
                         <Button style={{ background: "#ff007f" }}>Learn More</Button>
                     </Jumbotron>
                 </Col>
