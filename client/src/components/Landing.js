@@ -10,7 +10,7 @@ const LandingPage = () => {
             <Container>
                 <Row>
                     <Col>
-                        <Card className="text-center" style={{ color: "#000" }} class="feature" >
+                        <Card className="text-center" style={{ color: "#000" }} >
                         <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHq_oj8F4yPiYuwF0vKKVblRGHgDSzfVGqYw&usqp=CAU"/>
                         <Card.Body>
                             <Card.Title>
@@ -24,7 +24,7 @@ const LandingPage = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="text-center" style={{ color: "#000" }} class="feature" >
+                        <Card className="text-center" style={{ color: "#000" }} >
                         <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHq_oj8F4yPiYuwF0vKKVblRGHgDSzfVGqYw&usqp=CAU"/>
                         <Card.Body>
                             <Card.Title>
@@ -38,7 +38,7 @@ const LandingPage = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="text-center" style={{ color: "#000" }} class="feature" >
+                        <Card className="text-center" style={{ color: "#000" }} >
                         <Card.Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHq_oj8F4yPiYuwF0vKKVblRGHgDSzfVGqYw&usqp=CAU"/>
                         <Card.Body>
                             <Card.Title>
