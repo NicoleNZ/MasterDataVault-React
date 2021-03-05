@@ -80,8 +80,7 @@ const Home = () => {
     })
     .then((productData) => {
         console.log("Current productData is: ", productData);
-        setProductList(productData); //is this incase data is added to the databse from elsewhere?  Otherwise, how is this not a repeat of setProductList(newProducts);
-
+        setProductList(productData); 
     });
     }, []);  
     
@@ -94,16 +93,14 @@ const Home = () => {
     }
 
     const handleEditProductButtonClick = (product) => {
-        console.log("handleEditProductButtonClick: ", handleEditProductButtonClick);
+        console.log("handleEditProductButtonClick: ", product);
         const foundProduct = productList.findIndex((productEl) => {
-            console.log("productEl: ", productEl);
-            console.log("productEl._id: ", productEl._id)
-            return productEl._id
+            return productEl._id === product._id
         });
-        console.log("foundProduct: ", foundProduct);
-        const newProducts = [...productList];
-        newProducts[foundProduct] = product;
-        setProductList(newProducts);
+            const allProducts = [...productList];
+            allProducts[foundProduct] = product;
+            console.log("product: ", product)
+            console.log("product._id: ", product._id);
         fetch(`http://localhost:4000/api/vault/update-product/${product._id}`, {
             method: 'PATCH',
             headers: {
@@ -113,20 +110,33 @@ const Home = () => {
         })
         .then((response) => {
             console.log('Patch response:', response);
-        })        
+        });
+
+        fetch("http://localhost:4000/api/vault/welcome", { //this is going to GET the list of products from the MongoDB database, minus the one just deleted
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+            })
+            .then((response) => {
+                console.log("MongoDB product list response: ", response);
+                return response.json();
+            })
+            .then((productData) => {
+                console.log("Current productData is: ", productData);
+                setProductList(productData); 
+            });    
     };
 
     const handleDeleteProductButtonClick = (product) => {
-        console.log("handleDeleteProductButtonClick: ", handleDeleteProductButtonClick);
+        console.log("handleDeleteProductButtonClick: ", product);
         const foundProduct = productList.findIndex((productEl) => {
-            console.log("productEl: ", productEl);
-            console.log("productEl._id: ", productEl._id)
-            return productEl._id
+            return productEl._id === product._id
         });
-        console.log("foundProduct: ", foundProduct);
-        const newProducts = [...productList];
-        newProducts[foundProduct] = product;
-        setProductList(newProducts);
+            const allProducts = [...productList];
+            allProducts[foundProduct] = product;
+            console.log("product: ", product)
+            console.log("product._id: ", product._id);
         fetch(`http://localhost:4000/api/vault/delete-product/${product._id}`, {
             method: 'DELETE',
             headers: {
@@ -135,15 +145,30 @@ const Home = () => {
         })
         .then((response) => {
             console.log('Delete response:', response);
-        })        
-    };
+        });  
+        
+        fetch("http://localhost:4000/api/vault/welcome", { //this is going to GET the list of products from the MongoDB database, minus the one just deleted
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+            })
+            .then((response) => {
+                console.log("MongoDB product list response: ", response);
+                return response.json();
+            })
+            .then((productData) => {
+                console.log("Current productData is: ", productData);
+                setProductList(productData); 
+            });
+    };          
 
     return (
         <Router>
             {isLoggedIn && <div>
             <Navbar bg="primary" variant="dark" expand="lg">
             <Navbar.Brand href="#home">LOCKBOX</Navbar.Brand>
-            <Nav className="w-100 nav-justified">
+            <Nav className="w-100 nav-justified">   
                 <Nav.Item>
                     <Link className="nav-link" to="/create">Create Product</Link>    
                 </Nav.Item>
@@ -160,11 +185,7 @@ const Home = () => {
             </Navbar>
             
             <div>
-                <ul>
-                    <li>
-                        <Link to="productList">Product List</Link>
-                    </li>
-                </ul>
+                <ProductList products={productList} handleClick={handleProductClick} />
             </div>
             </div>  
             } 
@@ -182,65 +203,11 @@ const Home = () => {
                 <Route path="/logout">
                     <Logout />
                 </Route>
-                <Route path="/productList">
-                        <ProductList products={productList} handleClick={handleProductClick} />
-                </Route>
             </Switch>
 
             {!isLoggedIn && <LandingPage setIsLoggedIn={setIsLoggedIn}/>}
     </Router>
-    
-        /* <Router>
-            <nav>
-            <SignedInNavigation />
-            </nav>
-            <div>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to="productList">Product List</Link>
-                        </li>
-                    </ul>
-                </div>   
-                <div>
-                    <ul>
-                        <li>
-                            <Link to="createProduct">Create Product</Link>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <Link to="editProduct">Edit Product</Link>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <Link to="deleteProduct">Delete Product</Link>
-                        </li>
-                    </ul>
-                </div>
-
-                <Switch>
-                    <Route path="/productList">
-                        <ProductList products={productList} handleClick={handleProductClick} />
-                    </Route>
-                    <Route path="/createProduct">
-                        <CreateProduct submit={handleCreateProductSubmit}/>
-                    </Route>
-                    <Route path="/editProduct">
-                        <EditProduct submit={handleEditProductButtonClick} product={productEdit} />
-                    </Route>
-                    <Route path="/deleteProduct">
-                        <DeleteProduct submit={handleDeleteProductButtonClick} product={productDelete} />
-                    </Route>
-                </Switch>
-            </div>
-            <div>
-                <LandingPage />
-            </div>
-        </Router> */
     );
-
 };
 
 

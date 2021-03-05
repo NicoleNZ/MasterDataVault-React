@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
 const CreateProduct = (props) => {
     const [formState, setFormState] = useState({
@@ -31,40 +32,57 @@ const CreateProduct = (props) => {
     };
 
     return (
-        <div>
-            <h1>Add Product</h1>
-            <form onSubmit={handleCreateSubmit}>
-                <label>
-                    Product Code
-                    <input name="productCode" value={formState.productCode} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    Product Name
-                    <input name="productName" value={formState.productName} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    Net Weight
-                    <input name="netWeight" value={formState.netWeight} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    Units Per Case
-                    <input name="unitsPerCase" value={formState.unitsPerCase} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    List Price
-                    <input name="listPrice" value={formState.listPrice} onChange={handleFieldChange}></input>
-                </label>
-                <label>
-                    Unit Barcode
-                    <input name="unitBarcode" value={formState.unitBarcode} onChange={handleFieldChange}></input>
-                </label>
+        <Container>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>
+                            <h1>Create Product</h1>
+                            </Card.Title>
+                            <form onSubmit={handleCreateSubmit}>
                                 <label>
-                    Case Barcode
-                    <input name="caseBarcode" value={formState.caseBarcode} onChange={handleFieldChange}></input>
-                </label>
-                <button type="submit">Create Product</button>
-            </form>
-        </div>
+                                    Product Code
+                                    <input name="productCode" value={formState.productCode} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    Product Name
+                                    <input name="productName" value={formState.productName} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    Net Weight
+                                    <input name="netWeight" value={formState.netWeight} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    Units Per Case
+                                    <input name="unitsPerCase" value={formState.unitsPerCase} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    List Price
+                                    <input name="listPrice" value={formState.listPrice} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    Unit Barcode
+                                    <input name="unitBarcode" value={formState.unitBarcode} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <label>
+                                    Case Barcode
+                                    <input name="caseBarcode" value={formState.caseBarcode} onChange={handleFieldChange}></input>
+                                </label>
+                                <br></br>
+                                <Button type="submit" style={{ background: "#ff007f" }}>Create Product</Button>
+                            </form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
