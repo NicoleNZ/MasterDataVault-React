@@ -8,6 +8,7 @@ import { Logout } from "./Login"
 import { LandingPage } from "./Landing";
 import  Nav  from "react-bootstrap/Nav";
 import Navbar from 'react-bootstrap/Navbar';
+import { Container, Col } from "react-bootstrap";
 
 const Home = () => {
     
@@ -184,9 +185,11 @@ const Home = () => {
             </Nav>
             </Navbar>
             
-            <div>
+            <Container>
+                <Col xs={4} id="product-list">
                 <ProductList products={productList} handleClick={handleProductClick} />
-            </div>
+                </Col>
+            </Container>
             </div>  
             } 
 
