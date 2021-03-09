@@ -21,16 +21,7 @@ const Login = (props) => {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         console.log(formState); 
-        props.setIsLoggedIn(true);        // fetch("http://localhost:4000/api/user/register", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(formState),
-        //     })
-        //     .then((response) => {
-        //     console.log("POST response:", response);
-        //     });
+        props.setIsLoggedIn(true);        
     };
 
     return (
